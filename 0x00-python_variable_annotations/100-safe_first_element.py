@@ -2,11 +2,11 @@
 """
 Defines the safe_first_element function
 """
-from typing import Any, Sequence
+from typing import Any, Sequence, Union
 
 
 # The types of the elements of the input are not know
-def safe_first_element(lst: Sequence[Any]) -> Any | None:
+def safe_first_element(lst: Sequence[Any]) -> Union[Any, None]:
     """No idea
 
     Args:
