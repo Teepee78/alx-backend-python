@@ -2,12 +2,12 @@
 """
 Defines the function safely_get_value
 """
-from typing import Any, Mapping, TypeVar
+from typing import Any, Mapping, TypeVar, Union
 
 T = TypeVar('T')
 
 
-def safely_get_value(dct: Mapping, key: Any, default: T | None = None) -> Any | T:
+def safely_get_value(dct: Mapping, key: Any, default: Union[T, None] = None) -> Union[Any, T]:
     """No idea
 
     Args:
