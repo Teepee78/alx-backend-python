@@ -3,7 +3,7 @@
 Basic async syntax in python
 """
 import asyncio
-import random
+from random import uniform
 
 
 async def wait_random(max_delay: int = 10) -> float:
@@ -13,8 +13,8 @@ async def wait_random(max_delay: int = 10) -> float:
         max_delay (int, optional): Defaults to 10.
 
     Returns:
-        The number of seconds funtion delayed for
+        (float): The number of seconds funtion delayed for
     """
-    num = random.uniform(0, max_delay)
+    num = uniform(0, max_delay + 1)
     await asyncio.sleep(num)
     return num
