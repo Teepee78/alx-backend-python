@@ -18,8 +18,20 @@ async def wait_n(n: int, max_delay: int) -> List[float]:
     Returns:
         List[float]: list of max_delay seconds
     """
-    result = await asyncio.gather(
-        *tuple(map(lambda _: wait_random(max_delay), range(n)))
-    )
+    result = []
+    finished = []
 
-    return sorted(result)
+    for _ in range(n):
+        task = asyncio.create_task(wait_random(max_delay))
+        task.add_done_callback(lambda x: finished.append(x.result()))
+        result.append(task)
+
+    for task in result:
+        await task
+
+    return finished
+
+
+print(asyncio.run(wait_n(5, 5)))
+print(asyncio.run(wait_n(10, 7)))
+print(asyncio.run(wait_n(10, 0)))
