@@ -3,7 +3,7 @@
 Defines measure_runtime coroutine
 """
 import asyncio
-from time import time
+import time
 
 async_comprehension = __import__("1-async_comprehension").async_comprehension
 
@@ -14,7 +14,7 @@ async def measure_runtime() -> float:
     Returns:
         float: total runtime
     """
-    start = time()
+    start = time.time()
 
     await asyncio.gather(
         async_comprehension(),
@@ -23,4 +23,4 @@ async def measure_runtime() -> float:
         async_comprehension()
     )
 
-    return time() - start
+    return time.time() - start
