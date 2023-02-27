@@ -51,12 +51,18 @@ class TestGetJson(unittest.TestCase):
 
 
 class TestMemoize(unittest.TestCase):
-    """Tests utils.memoize function"""
+    """
+    Tests the utils.memoize function
+    """
 
     def test_memoize(self) -> None:
-        """Tests memoized function is called only once"""
+        """
+        Ensures the memoized function is called only once
+        """
         class TestClass:
-            """Test class"""
+            """
+            Test class
+            """
 
             def a_method(self):
                 return 42
