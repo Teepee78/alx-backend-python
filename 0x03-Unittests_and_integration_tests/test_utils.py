@@ -53,7 +53,7 @@ class TestGetJson(TestCase):
 class TestMemoize(TestCase):
     """Tests utils.memoize function"""
 
-    def test_memoize(self):
+    def test_memoize(self) -> None:
         """Tests memoized function is called only once"""
         class TestClass:
             """Test class"""
