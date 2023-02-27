@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Test cases for utils module"""
+import unittest
 from typing import Any, Mapping, Sequence
-from unittest import TestCase
 from unittest.mock import Mock, patch
 
 from parameterized import parameterized, parameterized_class
@@ -9,7 +9,7 @@ from parameterized import parameterized, parameterized_class
 from utils import access_nested_map, get_json, memoize
 
 
-class TestAccessNestedMap(TestCase):
+class TestAccessNestedMap(unittest.TestCase):
     """Tests utils.access_nested_map function"""
 
     @parameterized.expand([
@@ -36,7 +36,7 @@ class TestAccessNestedMap(TestCase):
             access_nested_map(nested_map, path)
 
 
-class TestGetJson(TestCase):
+class TestGetJson(unittest.TestCase):
     """Tests utils.get_json function"""
 
     @parameterized.expand([
@@ -50,7 +50,7 @@ class TestGetJson(TestCase):
             r.assert_called_once_with(input)
 
 
-class TestMemoize(TestCase):
+class TestMemoize(unittest.TestCase):
     """Tests utils.memoize function"""
 
     def test_memoize(self) -> None:
