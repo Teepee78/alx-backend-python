@@ -18,7 +18,7 @@ class TestGithubOrgClient(TestCase):
         ("abc", {"login": "abc"})
     ])
     @patch("client.get_json")
-    def test_org(self, org: str, resp: Dict[str, str], mocked: MagicMock):
+    def test_org(self, org: str, resp: Dict[str, str], mocked: MagicMock) -> None:
         """Tests GithubOrgClient.org method"""
 
         mocked.return_value = MagicMock(return_value=resp)
@@ -29,7 +29,7 @@ class TestGithubOrgClient(TestCase):
             "https://api.github.com/orgs/{}".format(org)
         )
 
-    def test_public_repos_url(self):
+    def test_public_repos_url(self) -> None:
         """Tests GithubOrgClient._public_repos_url"""
 
         with patch(
@@ -46,7 +46,7 @@ class TestGithubOrgClient(TestCase):
             )
 
     @patch("client.get_json")
-    def test_public_repos(self, prop: PropertyMock):
+    def test_public_repos(self, prop: PropertyMock) -> None:
         """Tests GithubOrgClient.public_repos"""
         payload = {
             'repos_url': "https://api.github.com/users/google/repos",
@@ -112,10 +112,11 @@ class TestGithubOrgClient(TestCase):
         repo: Dict[str, Dict],
         key: str,
         output: bool
-    ):
+    ) -> None:
         """Tests GithubOrgClient.has_license method"""
 
-        self.assertEqual(GithubOrgClient.has_license(repo, key), output)
+        g = GithubOrgClient("google")
+        self.assertEqual(g.has_license(repo, key), output)
 
 
 @parameterized_class([
@@ -130,7 +131,7 @@ class TestIntegrationGithubOrgClient(TestCase):
     """Integration tests for GithubOrgClient class"""
 
     @classmethod
-    def setUpClass(cls):
+    def setUpClass(cls) -> None:
         """Sets up class before running tests"""
 
         route_payload = {
@@ -138,7 +139,7 @@ class TestIntegrationGithubOrgClient(TestCase):
             'https://api.github.com/orgs/google/repos': cls.repos_payload,
         }
 
-        def get_payload(url):
+        def get_payload(url: str) -> Mock | HTTPError:
             if url in route_payload:
                 return Mock(**{'json.return_value': route_payload[url]})
             return HTTPError

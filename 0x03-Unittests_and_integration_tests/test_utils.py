@@ -30,7 +30,7 @@ class TestAccessNestedMap(TestCase):
         nested_map: Mapping,
         path: Sequence,
         exception: Exception
-    ):
+    ) -> None:
         """Tests access_nested_map function raises exception"""
         with self.assertRaises(exception):
             access_nested_map(nested_map, path)
@@ -43,7 +43,7 @@ class TestGetJson(TestCase):
         ("http://example.com", {"payload": True}),
         ("http://holberton.io", {"payload": False})
     ])
-    def test_get_json(self, input: str, output: Mapping):
+    def test_get_json(self, input: str, output: Mapping) -> None:
         ret = {"json.return_value": output}
         with patch("requests.get", return_value=Mock(**ret)) as r:
             self.assertEqual(get_json(input), output)
